@@ -1,0 +1,115 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema#",
+    "$id": "https://schema.vendorcorp.net/schema/catalogue-1.0.schema.json",
+    "type": "object",
+    "title": "VendorCorp Catalogue of Example Projects",
+    "required": [],
+    "additionalProperties": false,
+    "properties": {
+        "$schema": {
+            "type": "string",
+            "enum": [
+                "https://schema.vendorcorp.net/schema/catalogue-1.0.schema.json"
+            ]
+        },
+        "last_updated": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "projects": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/project"
+            },
+            "minItems": 0
+        }
+    },
+    "$defs": {
+        "build-system": {
+            "type": "string",
+            "enum": [
+                "dotnet",
+                "gradle",
+                "maven",
+                "npm",
+                "pip",
+                "poetry"
+            ]
+        },
+        "ci-system": {
+            "type": "string",
+            "enum": [
+                "azure-devops",
+                "github-actions",
+                "gitlab-ci",
+                "jenkins"
+            ]
+        },
+        "language": {
+            "type": "string",
+            "enum": [
+                "dotnet",
+                "java",
+                "javascript",
+                "python",
+            ]
+        },
+        "project": {
+            "type": "object",
+            "additionalProperties": false,
+            "requried": [
+                "name",
+                "repository",
+                "build-system",
+                "ci-systems",
+                "language"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Name of the Project"
+                },
+                "repository": {
+                    "$ref": "#/$defs/repository"
+                },
+                "build-system": {
+                    "$ref": "#/$defs/build-system"
+                },
+                "ci-systems": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/ci-system"
+                    },
+                    "minItems": 1
+                },
+                "language": {
+                    "$ref": "#/$defs/language"
+                }
+            }
+        },
+        "repository": {
+            "type": "object",
+            "additionalProperties": false,
+            "requried": [
+                "format",
+                "url",
+                "clone-ssh"
+            ],
+            "properties": {
+                "format": {
+                    "type": "string",
+                    "enum": [
+                        "git"
+                    ]
+                },
+                "url": {
+                    "type": "string",
+                    "format": "uri"
+                },
+                "clone-ssh": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

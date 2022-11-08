@@ -1,0 +1,19 @@
+{
+    "$schema": "https://schema.vendorcorp.net/schema/catalogue-1.0.schema.json",
+    "last_updated": "2022-11-08T12:40:00",
+    "projects": [
+        {
+            "name": "WebGoat Legacy",
+            "repository": {
+                "format": "git",
+                "url": "https://github.com/WebGoat/WebGoat-Legacy",
+                "clone-ssh": "git@github.com:WebGoat/WebGoat-Legacy.git"
+            },
+            "build-system": "maven",
+            "ci-systems": [
+                "jenkins"
+            ],
+            "language": "java"
+        }
+    ]
+}
